@@ -1,0 +1,22 @@
+﻿# 환경
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# 모델 & 데이터 (용량 큼)
+*.pt
+*.mp4
+*.avi
+data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+app/
