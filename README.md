@@ -181,11 +181,11 @@ python main.py --source data/sample/test_video.mp4
 
 ## 📈 개선 방향
 
-- [ ] Apache Kafka 기반 실시간 스트리밍 파이프라인 전환
-- [ ] Apache Airflow로 배치 분석 스케줄링
-- [ ] Grafana 연동 실시간 위험도 대시보드
-- [ ] FastAPI REST API 래핑
-- [ ] Docker Compose 환경 통일
+- Apache Kafka 기반 실시간 스트리밍 파이프라인 전환
+- Apache Airflow로 배치 분석 스케줄링
+- Grafana 연동 실시간 위험도 대시보드
+- FastAPI REST API 래핑
+- Docker Compose 환경 통일
 
 <br>
 
