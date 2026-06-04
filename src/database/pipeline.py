@@ -40,13 +40,14 @@ load_dotenv()
 # PostgreSQL 연결 설정
 # 환경변수 또는 직접 수정해서 사용
 # ==============================
-DB_CONFIG = {
-    "host":     os.getenv("PG_HOST"),
-    "port":     int(os.getenv("PG_PORT")),
-    "dbname":   os.getenv("PG_DBNAME"),
-    "user":     os.getenv("PG_USER"),
-    "password": os.getenv("PG_PASSWORD"),
-}
+def _get_db_config() -> dict:
+    return {
+        "host":     os.getenv("PG_HOST"),
+        "port":     int(os.getenv("PG_PORT")),
+        "dbname":   os.getenv("PG_DBNAME"),
+        "user":     os.getenv("PG_USER"),
+        "password": os.getenv("PG_PASSWORD"),
+    }
 
 # 위험도 임계값 상수
 RISK_EVENT_THRESHOLD  = 60   # 이 점수 이상이면 위험 이벤트 구간으로 기록
@@ -155,7 +156,7 @@ class RiskLogPipeline:
 
     def connect(self):
         try:
-            self._conn = psycopg2.connect(**DB_CONFIG)
+            self._conn = psycopg2.connect(**_get_db_config())
             self._conn.autocommit = False
             self._cursor = self._conn.cursor()
             self._cursor.execute(CREATE_TABLES_SQL)
