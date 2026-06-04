@@ -11,7 +11,7 @@ AI 기반 스마트 횡단보도 위험도 분석 코드 (데이터 파이프라
 import cv2
 import time
 
-from config import (
+from config.settings import (
     object_model,
     TARGET_CLASSES,
     PERSON_COLOR,
@@ -20,16 +20,16 @@ from config import (
     ROI_COLOR,
     VEHICLE_ROI_COLOR,
 )
-from drawing_utils import draw_korean_text, draw_polygon_roi
-from roi_utils import select_roi_polygon
-from geometry_utils import (
+from src.utils.drawing import draw_korean_text, draw_polygon_roi
+from src.analyzer.roi_analyzer import select_roi_polygon
+from src.utils.geometry import (
     is_point_in_polygon,
     calculate_vehicle_proximity,
     calculate_person_vehicle_risk,
     get_vehicle_front_point,
 )
-from risk_monitor import RiskMonitorWindow
-from db_pipeline import RiskLogPipeline   # ← 추가
+from src.analyzer.risk_scorer import RiskMonitorWindow
+from src.database.pipeline import RiskLogPipeline
 
 
 def detect_video(video_path: str, save_log: bool = True):
