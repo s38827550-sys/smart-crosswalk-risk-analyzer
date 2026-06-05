@@ -255,5 +255,6 @@ python main.py --source data/sample/test_video.mp4 --no-log
 | Language | Python 3.11 |
 | AI/Vision | YOLOv11s (Ultralytics), OpenCV, ByteTrack |
 | Database | PostgreSQL 15 |
+| Infra | Docker, Docker Compose |
 | Testing | pytest, pytest-cov, GitHub Actions CI |
 | Config | python-dotenv |
