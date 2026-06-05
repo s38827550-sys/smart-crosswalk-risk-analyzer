@@ -161,7 +161,8 @@ class RiskLogPipeline:
             self._cursor = self._conn.cursor()
             self._cursor.execute(CREATE_TABLES_SQL)
             self._conn.commit()
-            print(f"[Pipeline] PostgreSQL 연결 성공: {DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['dbname']}")
+            config = _get_db_config()
+            print(f"[Pipeline] PostgreSQL 연결 성공: {config['host']}:{config['port']}/{config['dbname']}")
         except Exception as e:
             print(f"[Pipeline] DB 연결 실패 상세: {type(e).__name__}: {e}")  # ← 이 줄로 교체
             raise
