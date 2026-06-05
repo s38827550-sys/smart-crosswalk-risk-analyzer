@@ -171,12 +171,15 @@ smart-crosswalk-risk-analyzer/
 │   ├── test_detector.py
 │   ├── test_risk_scorer.py
 │   └── test_database.py
+├── data/
+│   └── sample/                    # 테스트 영상 (.gitignore 제외)
 ├── docs/
 │   └── images/                    # 아키텍처 다이어그램
 ├── scripts/
-│   └── setup_db.sql               # DB 초기화 스크립트
+│   └── setup_db.sql               # DB 초기화 (docker-compose 자동 실행)
 ├── .env.example                   # 환경변수 템플릿
 ├── .gitignore
+├── docker-compose.yml             # PostgreSQL 컨테이너
 ├── pytest.ini
 ├── requirements.txt
 ├── main.py
@@ -189,7 +192,7 @@ smart-crosswalk-risk-analyzer/
 
 ### 사전 요구사항
 - Python 3.11+
-- PostgreSQL 15+
+- Docker & Docker Compose
 
 ### 설치 및 실행
 
@@ -199,8 +202,9 @@ git clone https://github.com/s38827550-sys/smart-crosswalk-risk-analyzer.git
 cd smart-crosswalk-risk-analyzer
 
 # 2. 가상환경 생성 및 활성화
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
 
 # 3. 패키지 설치
 pip install -r requirements.txt
@@ -209,11 +213,14 @@ pip install -r requirements.txt
 cp .env.example .env
 # .env 파일에 DB 정보 입력
 
-# 5. DB 초기화
-psql -U your_user -d crosswalk_db -f scripts/setup_db.sql
+# 5. DB 컨테이너 시작 (테이블 자동 생성)
+docker-compose up -d
 
-# 6. 실행
+# 6. 실행 (DB 저장 포함)
 python main.py --source data/sample/test_video.mp4
+
+# DB 저장 없이 실행
+python main.py --source data/sample/test_video.mp4 --no-log
 ```
 
 <br>
