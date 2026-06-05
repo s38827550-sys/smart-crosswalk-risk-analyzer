@@ -177,6 +177,7 @@ smart-crosswalk-risk-analyzer/
 │   └── setup_db.sql               # DB 초기화 스크립트
 ├── .env.example                   # 환경변수 템플릿
 ├── .gitignore
+├── docker-compose.yml             # Infra
 ├── pytest.ini
 ├── requirements.txt
 ├── main.py
