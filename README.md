@@ -30,7 +30,7 @@
 
 ```mermaid
 graph TB
-    A[🎥 영상 입력<br/>CCTV / 로컬 파일] --> B[🔍 YOLOv8 객체 탐지<br/>yolo_detector.py]
+    A[🎥 영상 입력<br/>CCTV / 로컬 파일] --> B[🔍 YOLOv11 객체 탐지<br/>yolo_detector.py]
     B --> C[📐 ROI 위험영역 필터링<br/>roi_analyzer.py]
     C --> D[🔁 Object Tracker<br/>object_tracker.py]
     D --> E[📏 Proximity 거리 분석<br/>geometry.py]
@@ -44,7 +44,7 @@ graph TB
 
 ## ⚙️ 핵심 기능
 
-### 1. YOLOv8 객체 탐지 (`src/detector/`)
+### 1. YOLOv11 객체 탐지 (`src/detector/`)
 - 모델: YOLOv11s (실시간 처리 최적화)
 - 탐지 클래스: `person`, `car`, `truck`, `bus`
 - Confidence Threshold: `0.18` / IOU: `0.45`
