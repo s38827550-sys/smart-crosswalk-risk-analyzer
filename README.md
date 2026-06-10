@@ -3,7 +3,7 @@
 > YOLOv8 기반 실시간 차량-보행자 위험도 분석 시스템
 
 ![CI](https://github.com/s38827550-sys/smart-crosswalk-risk-analyzer/actions/workflows/ci.yml/badge.svg)
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=flat-square&logo=python&logoColor=white)
 ![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-8A2BE2?style=flat-square)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?style=flat-square&logo=postgresql&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.x-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
@@ -149,7 +149,7 @@ smart-crosswalk-risk-analyzer/
 ├── src/
 │   ├── detector/
 │   │   ├── __init__.py
-│   │   └── yolo_detector.py       # YOLOv8 추론 파이프라인
+│   │   └── yolo_detector.py       # YOLOv11 추론 파이프라인
 │   ├── analyzer/
 │   │   ├── __init__.py
 │   │   ├── risk_scorer.py         # 위험도 점수 산출
@@ -191,7 +191,7 @@ smart-crosswalk-risk-analyzer/
 ## 🚀 실행 방법
 
 ### 사전 요구사항
-- Python 3.11+
+- Python 3.10+
 - Docker & Docker Compose
 
 ### 설치 및 실행
@@ -252,7 +252,7 @@ python main.py --source data/sample/test_video.mp4 --no-log
 
 | 분류 | 기술 |
 |---|---|
-| Language | Python 3.11 |
+| Language | Python 3.10 |
 | AI/Vision | YOLOv11s (Ultralytics), OpenCV, ByteTrack |
 | Database | PostgreSQL 15 |
 | Testing | pytest, pytest-cov, GitHub Actions CI |
