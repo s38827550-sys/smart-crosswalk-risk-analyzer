@@ -1,7 +1,7 @@
 """
 Object Tracker 유틸리티 모듈
 
-YOLOv8의 ByteTrack 기반 트래킹 결과를 후처리하는 유틸리티 클래스.
+YOLOv11의 ByteTrack 기반 트래킹 결과를 후처리하는 유틸리티 클래스.
 yolo_service.py에서 model.track(..., tracker="bytetrack.yaml")로 트래킹하고,
 이 모듈은 트래킹 상태(이동 감지, 정지 카운트, 궤적 관리)를 관리한다.
 """

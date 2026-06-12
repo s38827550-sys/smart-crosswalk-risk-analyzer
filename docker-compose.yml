@@ -15,7 +15,6 @@ services:
       - "${PG_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./scripts/setup_db.sql:/docker-entrypoint-initdb.d/setup_db.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${PG_USER}"]
       interval: 10s
