@@ -1,10 +1,10 @@
 # 🚦 Smart Crosswalk Risk Analyzer
 
-> YOLOv8 기반 실시간 차량-보행자 위험도 분석 시스템
+> YOLOv11 기반 실시간 차량-보행자 위험도 분석 시스템
 
 ![CI](https://github.com/s38827550-sys/smart-crosswalk-risk-analyzer/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=flat-square&logo=python&logoColor=white)
-![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-8A2BE2?style=flat-square)
+![YOLOv11](https://img.shields.io/badge/YOLOv11-Ultralytics-8A2BE2?style=flat-square)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?style=flat-square&logo=postgresql&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.x-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
 ![pytest](https://img.shields.io/badge/tested%20with-pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
@@ -83,20 +83,6 @@ graph TB
 | `risk_summary` | 매 1초 집계 | 시간대별 평균/최대 위험도 |
 | `risk_event` | 위험도 60 이상 구간 | 위험 이벤트 시작~종료 추적 |
 
-```sql
--- 위험 이벤트 구간 테이블 (핵심)
-CREATE TABLE risk_event (
-    id             BIGSERIAL PRIMARY KEY,
-    session_id     TEXT        NOT NULL,
-    started_at     TIMESTAMPTZ NOT NULL,
-    ended_at       TIMESTAMPTZ,
-    peak_risk      SMALLINT    NOT NULL DEFAULT 0,
-    duration_sec   FLOAT,
-    trigger_reasons TEXT[]
-);
-CREATE INDEX idx_risk_event_session ON risk_event (session_id, started_at);
-```
-
 <br>
 
 ## 👥 팀 역할 분담
@@ -112,7 +98,6 @@ CREATE INDEX idx_risk_event_session ON risk_event (session_id, started_at);
 - ✅ 위험 이벤트 실시간 저장 파이프라인 구현 (`pipeline.py`)
 - ✅ risk_log / risk_summary / risk_event 3단계 저장 전략 설계
 - ✅ ROI 영역 분석 로직 구현 (`roi_analyzer.py`)
-- ✅ DB 초기화 스크립트 작성 (`scripts/setup_db.sql`)
 - ✅ 환경변수 기반 설정 구조 설계 (`.env.example`)
 - ✅ 단위 테스트 43개 작성 및 GitHub Actions CI 구축
 
@@ -175,8 +160,6 @@ smart-crosswalk-risk-analyzer/
 │   └── sample/                    # 테스트 영상 (.gitignore 제외)
 ├── docs/
 │   └── images/                    # 아키텍처 다이어그램
-├── scripts/
-│   └── setup_db.sql               # DB 초기화 (docker-compose 자동 실행)
 ├── .env.example                   # 환경변수 템플릿
 ├── .gitignore
 ├── docker-compose.yml             # PostgreSQL 컨테이너
@@ -243,7 +226,6 @@ python main.py --source data/sample/test_video.mp4 --no-log
 - Apache Airflow로 배치 분석 스케줄링
 - Grafana 연동 실시간 위험도 대시보드
 - FastAPI REST API 래핑
-- Docker Compose 환경 통일
 - 테스트 커버리지 80% 이상 달성
 
 <br>
@@ -255,5 +237,6 @@ python main.py --source data/sample/test_video.mp4 --no-log
 | Language | Python 3.10 |
 | AI/Vision | YOLOv11s (Ultralytics), OpenCV, ByteTrack |
 | Database | PostgreSQL 15 |
+| Infra | Docker, Docker Compose |
 | Testing | pytest, pytest-cov, GitHub Actions CI |
 | Config | python-dotenv |
